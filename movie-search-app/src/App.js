@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import { fetchMovies, fetchMovieDetails } from './api';
 import './App.css';
@@ -20,7 +19,7 @@ const App = () => {
       console.log(data);
       if (data && data.Search && data.Search.length > 0) {
         setMovies(data.Search);
-        setTotalPages(Math.ceil(data.totalResults / 10));
+        setTotalPages(Math.ceil(data.totalResults / 12));
         setError(null);
         setShowPopup(false);
       } else {
@@ -61,6 +60,8 @@ const App = () => {
       setError('Failed to fetch movie details.');
     }
   };
+  
+  
 
   const handleCloseDetails = () => {
     setSelectedMovie(null);
@@ -126,8 +127,11 @@ const App = () => {
                 </button>
               )}
             </div>
-            {selectedMovie && selectedMovie.imdbID === movie.imdbID && (
-              <div className="movie-details-popup">
+          </li>
+        ))}
+      </ul>
+      {selectedMovie  && (
+              <div className="movie-details-popup active">
                 <div className="movie-details">
                   <h3>{selectedMovie.Title}</h3>
                   <img src={selectedMovie.Poster} alt={selectedMovie.Title} className="popup-movie-poster" />
@@ -141,9 +145,6 @@ const App = () => {
                 </div>
               </div>
             )}
-          </li>
-        ))}
-      </ul>
       {currentPage < totalPages && (
         <button onClick={handleLoadMore} className="load-more-button">
           Load More
