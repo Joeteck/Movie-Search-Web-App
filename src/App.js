@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { fetchMovies, fetchMovieDetails } from './api';
 import './App.css';
-
-
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,23 +12,6 @@ const App = () => {
   const [sortingOption, setSortingOption] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-
-  const fetchMovies = async (searchTerm, page) => {
-    const apiKey = 'a223ac01';
-    const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchTerm}&page=${page}`;
-  
-    try {
-      const response = await axios.get(apiUrl);
-      if (response.status === 200) {
-        return response.data;
-      } else {
-        throw new Error(`Failed to fetch movie data. Code: ${response.status}`);
-      }
-    } catch (error) {
-      console.error(error);
-      throw new Error('Failed to fetch movie data.');
-    }
-  };
 
   const handleSearch = async () => {
     try {

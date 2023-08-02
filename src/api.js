@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const fetchMovies = async (searchTerm, page) => {
   const apiKey = 'a223ac01';
-  const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchTerm}&page=${page}`;
+  const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=${searchTerm}&page=${page}`;
 
   try {
     const response = await axios.get(apiUrl);
@@ -19,7 +19,7 @@ export const fetchMovies = async (searchTerm, page) => {
 
 export const fetchMovieDetails = async (imdbID) => {
   const apiKey = 'a223ac01';
-  const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`;
+  const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`;
 
   try {
     const response = await axios.get(apiUrl);
